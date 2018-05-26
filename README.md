@@ -30,7 +30,7 @@ library/pythonbytes.pyc | compiled version
 ## Examples
 
 Some sample applications made using this library of varying levels of difficulty  
-_NOTE: The examples directory contains folders of images used as sprites and stages and are copyright of [Scratch] (https://scratch.mit.edu/) and are not owned by the author of python-bytes._  
+_NOTE: The examples directory contains folders of images used as sprites and stages and are copyright of Scratch (https://scratch.mit.edu/) and are not owned by the author of python-bytes._  
 
 File | Description
 ---- | -----------
