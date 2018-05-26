@@ -1,25 +1,25 @@
 # python-bytes
 
-Python module to make the designing of computer/video games much easier. It hides all the complicated pygame code in a module and provides an easy API to create games in minutes. To get started, see the examples directory.
+Python module to make the designing of computer/video games much easier. It hides all the complicated pygame code in a module and provides an easy API to create games in minutes. To get started, see the examples directory.  
 
-##PREREQUISITES
+## Prerequisites
 
-*Python 2.7.15 32bit
-[Python Download](https://www.python.org/downloads/release/python-2715/)
-*Pygame 32bit for Python 2.7
-[Pygame Download](http://pygame.org/ftp/pygame-1.9.2a0.win32-py2.7.msi)
+* Python 2.7.15 32bit  
+[Python Download](https://www.python.org/downloads/release/python-2715/)  
+* Pygame 32bit for Python 2.7  
+[Pygame Download](http://pygame.org/ftp/pygame-1.9.2a0.win32-py2.7.msi)  
   
 
-##LIBRARY
+## Library
 
-Can be copied to the python include directory or left alongside the python program
+Can be copied to the python include directory or left alongside the python program  
+  
+Windows  C:\Python27\Lib  
+Linux    /usr/lib/python2.7  
 
-Windows  C:\Python27\Lib
-Linux    /usr/lib/python2.7
+Use the compiled version to hide the source code (*.pyc)  
 
-Use the compiled version to hide the source code (*.pyc)
-
-_NOTE: pygame must be installed for it to work correctly Raspberry PI Python27 comes preloaded with pygame_
+_NOTE: pygame must be installed for it to work correctly (Raspberry PI Python27 comes preloaded with pygame)_  
 
 File | Description
 ---- | -----------
@@ -27,10 +27,10 @@ library/pythonbytes.py | source code for the library
 library/pythonbytes.pyc | compiled version
 
 
-##EXAMPLES
+## Examples
 
-Some sample applications made using this library of varying levels of difficulty
-_NOTE: The examples directory contains folders of images used as sprites and stages and are copyright of [Scratch] (https://scratch.mit.edu/) and are not owned by the author of python-bytes._
+Some sample applications made using this library of varying levels of difficulty  
+_NOTE: The examples directory contains folders of images used as sprites and stages and are copyright of [Scratch] (https://scratch.mit.edu/) and are not owned by the author of python-bytes._  
 
 File | Description
 ---- | -----------
