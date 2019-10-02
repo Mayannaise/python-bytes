@@ -3,12 +3,12 @@
 Python module to make the designing of computer/video games much easier. It hides all the complicated pygame code in a module and provides an easy API to create games in minutes. To get started, see the examples directory.  
 
 ## Prerequisites
+ 
+* Pygame 
+https://askubuntu.com/questions/401342/how-to-download-pygame-in-python3-3
+* Tkinter
+> apt-get install python3-tk
 
-* Python 2.7.15 32bit  
-[Python Download](https://www.python.org/downloads/release/python-2715/)  
-* Pygame 32bit for Python 2.7  
-[Pygame Download](http://pygame.org/ftp/pygame-1.9.2a0.win32-py2.7.msi)  
-  
 
 ## Library
 

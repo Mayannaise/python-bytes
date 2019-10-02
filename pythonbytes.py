@@ -3,27 +3,31 @@ import random, os.path, sys
 import pygame
 import math
 from pygame.locals import *
-import Tkinter
+from tkinter import Tk
 import datetime
 import __main__
 
+__author__ = "Owen Jeffreys"
+__copyright__ = "Copyright (c) 2019, Owen Jeffreys"
+__license__ = "GPL"
+__version__ = "1.3.0"
+__maintainer__ = "Owen Jeffreys"
+__status__ = "Development"
 
-
+# define global constants
 TITLE = "Python Bytes!"
-
 SCREEN_HEIGHT = 360
 SCREEN_WIDTH = 480
 SCREENRECT = Rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
-
 FRAMES_PER_SEC = 20     #cap fps to save CPU
-
-
 PROG_DIR = "."          #program's directory
 
+# define global flags
 _fullscreen = False
 _loaded = False
 _loop = True
 
+# define global colour definitions
 Red = red = (255,0,0)
 Green = green = (0,255,0)
 Blue = blue = (0,100,255)
@@ -35,25 +39,29 @@ Black = black = (0, 0, 0)
 Grey = grey = (50, 50, 50)
 White = white = (255, 255, 255)
 
+# define direction definitions
 Left = left = West = west = 0
 Right = right = East = east = 1
 Up = up = Top = top = North = north = 2
 Down = down = Bottom = bottom = South = south = 3
 
+# define boolean definitions
 false = no = No = False
 true = yes = Yes = True
 
+# define string constants
 days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
-
+# create busy indicator
 whirlygig = ["|", "/", "-", "\\"]
 wgIndex = 0
 
-
-root = Tkinter.Tk()
+# create global objects
+root = Tk()
 dirtyRects = []         #list of rectangles which need redrawing to screen
 ObjectList = []         #array of all the sprites in the program
 
+# initialise global variables
 curStage = ""           #current stage filename
 
 
@@ -259,36 +267,36 @@ class Sprite():
         
 
 
-		
+        
 class Frame():	
-	def __init__(self, *tex):
-                self.textures = []
-		for t in tex:
-			self.textures.append(Sprite(t,tx=20))		#image w. transparent pixels
-	
-	def SetLocation(self,x,y):
-		self.textures = [t.SetLocation(x,y) for t in self.textures]
-                return self
+    def __init__(self, *tex):
+        self.textures = []
+        for t in tex:
+            self.textures.append(Sprite(t,tx=20))		#image w. transparent pixels
+    
+    def SetLocation(self,x,y):
+        self.textures = [t.SetLocation(x,y) for t in self.textures]
+        return self
             
-	def Scale(self, factor):
-		self.textures = [t.Shrink(factor) for t in self.textures]
-		return self
-		
-	def Shrink(self, factor):
-		self.Scale(factor)
-		return self
-		
-	def Rotate(self, i, deg):
-		self.textures[i-1].SetRotation(deg)
-		return self
-		
-	def moveX(self, i, diff):	# pixel difference to move object (+ right, - left)
-		return self
-		
-	def moveY(self, i, diff):	# pixel difference to move object (+ up, - down)
-		return self
-		
-		
+    def Scale(self, factor):
+        self.textures = [t.Shrink(factor) for t in self.textures]
+        return self
+        
+    def Shrink(self, factor):
+        self.Scale(factor)
+        return self
+        
+    def Rotate(self, i, deg):
+        self.textures[i-1].SetRotation(deg)
+        return self
+        
+    def moveX(self, i, diff):	# pixel difference to move object (+ right, - left)
+        return self
+        
+    def moveY(self, i, diff):	# pixel difference to move object (+ up, - down)
+        return self
+        
+        
 
 class Text:
     def __init__(self, text="", font="Arial", size=20, x=None, y=None, colour=(0,0,0), centre=False):
@@ -298,7 +306,7 @@ class Text:
         self.font = pygame.font.SysFont(font, size)
         self.x = x
         self.y = y
-		self.center = centre
+        self.center = centre
         if self.x == None: self.x = 0; self.center = centre
         if self.y == None: self.y = 0; self.center = centre
         self.textRender = self.font.render(text, 1, colour)
@@ -578,9 +586,9 @@ def print_header():
     print ("$$         --------------------------        $$")
     print ("$$                                           $$")
     print ("$$  Designed By: Owen Jeffreys               $$")
-    print ("$$  Copyright (c) 2018 All Rights Reserved   $$")
+    print ("$$  %s        $$" % __copyright__)
     print ("$$  Contact: osjeffreys.uk@gmail.com         $$")
-    print ("$$  Version: 1.2                             $$")
+    print ("$$  Version: %s                           $$" % __version__)
     print ("$$                                           $$")
     print ("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
     print ("")
@@ -676,33 +684,28 @@ def main():
                     if 'when_RETURN_key_held' in globals(): when_RETURN_key_held()
         
 
-        #execute user code over and over
+        #execute user code over and over if loop() exists in their file
         if 'loop' in globals() and _loop: loop()
 
         RefreshScreen()     #place sprites back on screen
-
-
-
-
-
 
 
 if __name__ == '__main__':
     #user attemping to run pythonbytes file manually
     #does not work, must be imported from another file
     print ("This file cannot be run - try importing it:")
-    print ("import pythonbytes")
-    
+    print ("import pythonbytes")  
 else:
     #user is including this module
-    #import the user functions
+    #import the user functions as this module calls them
+    #- loop() is called periodically
+    #- main() is called at startup
     #print(hasattr(__main__,__file__))
     try:
         src = __main__.__file__
     except:
         src = sys.argv[0]
-        
-    execfile(src)
-    
-    main()
 
+    #read in file run by user and execute it
+    exec(open(src).read())
+    main()
