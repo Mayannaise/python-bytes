@@ -1,5 +1,6 @@
 #Written by: Owen Jeffreys
-
+import sys
+sys.path.append('..')
 import pythonbytes
 
 

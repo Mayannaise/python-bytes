@@ -1,8 +1,8 @@
 #Written by: Owen Jeffreys
 
-#must be included at the start of every program
+import sys
+sys.path.append('..')
 import pythonbytes
-
 
 
 #one-off function run at startup use to prepare the initial sprites
@@ -16,7 +16,6 @@ def init():
     myShark1 = Sprite('sprites/shark.png')     
     myShark2 = Sprite('sprites/shark.png')
 
-
     #setup the sprites
     myShark1.Shrink(30)
     myShark1.SetLocation(80, 160)
@@ -25,10 +24,6 @@ def init():
     myShark2.SetLocation(110, 80)
 
     Text('Shark Invaders', size=36, colour=Orange, centre=True)
-
-
-
-
 
 
 #this function is called over and over again at regular intervals
@@ -47,12 +42,8 @@ def loop():
         myShark1.FlipVertical()
 
 
-
-        
-
 def when_LEFT_key_pressed():
     myShark1.Direction = Left
     
-
 def when_RIGHT_key_pressed():
     myShark1.Direction = Right

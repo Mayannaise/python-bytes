@@ -64,12 +64,8 @@ ObjectList = []         #array of all the sprites in the program
 # initialise global variables
 curStage = ""           #current stage filename
 
-
-
-
+# initialise global objects
 class Images: pass     #container for images
-
-
 
 
 class Sprite():
@@ -262,12 +258,9 @@ class Sprite():
                             return True
                 except:
                     pass
-   
         return False
         
 
-
-        
 class Frame():	
     def __init__(self, *tex):
         self.textures = []
@@ -295,8 +288,7 @@ class Frame():
         
     def moveY(self, i, diff):	# pixel difference to move object (+ up, - down)
         return self
-        
-        
+               
 
 class Text:
     def __init__(self, text="", font="Arial", size=20, x=None, y=None, colour=(0,0,0), centre=False):
@@ -353,16 +345,11 @@ class Text:
         dirtyRects.append(r)
 
 
-
-
 def HideMouse():
     pygame.mouse.set_visible(0)
 
 def ShowMouse():
     pygame.mouse.set_visible(1)
-
-
-
 
 def FullScreen():
     if curStage != '':
@@ -381,8 +368,6 @@ def ToggleFullScreen():
     else:
         Windowed()
 
-
-    
 def Day():
     now = datetime.datetime.now()
     return now.strftime('%A')
@@ -395,13 +380,9 @@ def Time():
     now = datetime.datetime.now()
     return now.strftime('%H') + ":" + now.strftime('%M') + ":" + now.strftime('%S')
 
-
-
-
-
-
-#function to load image - for sprite with transparent bg
 def LoadSprite(f, transparent=True):
+    """ Method to load sprite (movable image with transparent bg)
+    """
     try:
         surface = pygame.image.load(f)
         if transparent:                                   #if remove bg
@@ -423,15 +404,10 @@ def LoadSprite(f, transparent=True):
         print ("\n[ERROR] " + pygame.get_error())
         EndGame()
 
-    
 
-
-
-
-
-
-#function to load image - for bg, no transparent
 def LoadStage(f):
+    """ Method to load image for bg (no transparent)
+    """
     try:
         surface = pygame.image.load(f)
         return surface.convert()
@@ -445,12 +421,10 @@ def LoadStage(f):
         print ("\n[ERROR] " + pygame.get_error())
         EndGame()
     
-    
 
-
-
-#function to set the background image
 def SetStage(stage, fullscreen=False):
+    """ Method to set the background image
+    """
     global surf, curStage
 
     if type(stage) is str:
@@ -486,20 +460,18 @@ def ResizeStage(w, h, update=True):
     if update: SetStage(curStage, _fullscreen)
 
 
-
-
-
-#clear screen of actors
 def ClearScreen():
+    """ Clear screen of actors
+    """
     global ObjectList
     
     for obj in ObjectList:
         obj.erase(screen, surf)
 
 
-
-#update actors' positions etc, then display
 def RefreshScreen():
+    """ Update actors' positions etc, then display
+    """
     global dirtyRects, ObjectList
 
     ClearScreen()
@@ -508,12 +480,10 @@ def RefreshScreen():
         obj.draw(screen)
 
     pygame.display.flip()
- 
-    pygame.display.update(dirtyRects)   #only update areas which need to be
+
+    #only update areas which need to be
+    pygame.display.update(dirtyRects)
     dirtyRects = []
-
-
-
 
 
 def PrintWhirlygig():
@@ -525,8 +495,6 @@ def PrintWhirlygig():
         if wgIndex >= len(whirlygig): wgIndex=0
 
 
-
-
 def SetStageSize(x, y, fullscreen=False):
     global SCREEN_WIDTH, SCREEN_HEIGHT, SCREENRECT, _fullscreen
     global screen, surf
@@ -535,7 +503,6 @@ def SetStageSize(x, y, fullscreen=False):
     SCREEN_HEIGHT = y
     SCREENRECT = Rect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)
 
-    
     if fullscreen:
         flag = pygame.FULLSCREEN | pygame.NOFRAME
         _fullscreen = True
@@ -551,10 +518,6 @@ def SetStageSize(x, y, fullscreen=False):
 
     surf = pygame.Surface(SCREENRECT.size)
 
-
-
-
-
 def EndLoop():
     global _loop
     _loop = False
@@ -566,17 +529,10 @@ def EndGame():
     except SystemExit:
         os._exit(1)
 
-
-
 def SetFPS(fps):
     global FRAMES_PER_SEC
     FRAMES_PER_SEC = fps
     print("@ " + str(fps) + "fps")
-
-
-
-
-    
 
 def print_header():
     print ("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
@@ -594,11 +550,9 @@ def print_header():
     print ("")
 
 
-
-
-
-#start up function
 def main():
+    """ Startup function
+    """
     global screen, surf
     global dirtyRects, ObjectList   #access the public variable
     global SCREENRECT
@@ -609,38 +563,25 @@ def main():
     
     os.environ['SDL_VIDEO_CENTERED'] = '1'
     pygame.init()                   #initialise game
-    #pygame.display.init()
     clock = pygame.time.Clock()
     random.seed()                   #randomise
     
-
     #setup console
     pygame.display.set_caption(TITLE)
-    #pygame.mouse.set_visible(0)
-    #sys.tracebacklimit = 0
     pygame.key.set_repeat(1, 20)
-
-    
     SetStageSize(SCREEN_WIDTH, SCREEN_HEIGHT)   #start small
-    #SetStageSize(root.winfo_screenwidth(), root.winfo_screenwidth()) #start full
 
-    
-    #-- from imported program --
+    # methods from imported program
     if 'init' in globals() and not _loaded:
         _loaded = True
         init()
         RefreshScreen()
-    #---------------------------
-
-    
+ 
     while 1:
         clock.tick(FRAMES_PER_SEC)      #don't run too fast
-
         ClearScreen()                   #clear sprites from screen
+        PrintWhirlygig()                #display wirlygig if running in console window
 
-        #PrintWhirlygig()                #display wirlygig if running in console window
-
-    
         #read inputs and check for exit
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -683,12 +624,9 @@ def main():
                     if 'when_ENTER_key_held' in globals(): when_ENTER_key_held()
                     if 'when_RETURN_key_held' in globals(): when_RETURN_key_held()
         
-
         #execute user code over and over if loop() exists in their file
         if 'loop' in globals() and _loop: loop()
-
         RefreshScreen()     #place sprites back on screen
-
 
 if __name__ == '__main__':
     #user attemping to run pythonbytes file manually

@@ -1,6 +1,8 @@
 #Written by: Owen Jeffreys
 #(c) Copyright 2015
 
+import sys
+sys.path.append('..')
 import pythonbytes
 
 time = 0
