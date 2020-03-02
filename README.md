@@ -14,22 +14,14 @@ Python 2 is dying, so trying to migrate to Python3
 * Pygame for Python3 
 [Pygame Download](https://askubuntu.com/questions/401342/how-to-download-pygame-in-python3-3)
 
-## Library
+## The python-bytes Module
 
-Can be copied to the python include directory or left alongside the python program  
+Can be copied to the python include directory or left alongside your python program  
   
 Windows  C:\Python27\Lib  
-Linux    /usr/lib/python2.7  
-
-Use the compiled version to hide the source code (*.pyc)  
+Linux    /usr/lib/python2.7    
 
 _NOTE: pygame must be installed for it to work correctly (Raspberry PI Python27 comes preloaded with pygame)_  
-
-File | Description
----- | -----------
-library/pythonbytes.py | source code for the library
-library/pythonbytes.pyc | compiled version
-
 
 ## Examples
 
