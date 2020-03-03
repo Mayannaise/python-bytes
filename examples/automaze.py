@@ -1,6 +1,4 @@
 #Written by: Owen Jeffreys
-import sys
-sys.path.append('..')
 import pythonbytes
 
 
@@ -19,7 +17,6 @@ def init():
     ball.Direction = Right
     while (not ball.TouchingColour(Black, Right)):
         ball.MoveSteps(1)
-
 
 
 def loop():

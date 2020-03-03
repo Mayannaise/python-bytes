@@ -1,8 +1,5 @@
 #Written by: Owen Jeffreys
-#(c) Copyright 2015
 
-import sys
-sys.path.append('..')
 import pythonbytes
 
 time = 0
@@ -11,10 +8,10 @@ alarm = 10
 
 def init():
     global myText, alarm
-    myText = Text(font="Tahoma", size=100, y=(SCREEN_HEIGHT/2)-70, colour=White, centre=True)
+    myText = Text(font='Tahoma', size=100, y=(SCREEN_HEIGHT/2)-70, colour=White, centre=True)
     
-    Text(Day(), "Tahoma", size=40, y=50, colour=Blue, centre=True)
-    Text(Date(), "Tahoma", size=20, y=270, colour=Blue, centre=True)
+    Text(Day(), 'Tahoma', size=40, y=50, colour=Blue, centre=True)
+    Text(Date(), 'Tahoma', size=20, y=270, colour=Blue, centre=True)
 
     
 def loop():
